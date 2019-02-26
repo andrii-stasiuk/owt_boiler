@@ -41,7 +41,7 @@ $sqlQuery = <<<EOT
 			`email` varchar(255) DEFAULT NULL,
 			`phone_no` varchar(15) DEFAULT NULL,
 			PRIMARY KEY (`id`)
-		   ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+		    ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 EOT;
 		dbDelta($sqlQuery);
 	}
