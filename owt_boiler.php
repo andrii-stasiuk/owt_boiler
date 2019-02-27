@@ -47,6 +47,13 @@ define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 	}
 	add_action("admin_menu", "owt_menus_sections");
 
+	function callbackfunction1() {
+		echo("hello");
+	}
+
+	function callbackfunction2() {
+		echo("hello2");
+	}
 
 /**
  * The code that runs during plugin activation.
