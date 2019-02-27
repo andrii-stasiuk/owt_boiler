@@ -100,4 +100,20 @@ class Owt_boiler_Admin {
 
 	}
 
+	//Show the links in admin menu when Activating the plugin
+	public function owt_menus_sections() {
+		global $wpdb;
+		add_menu_page("OWT Menus", "OWT Menus", "manage_options", "owt-menus", array($this,'playlists'), 'dashicons-editor-help',7);
+		add_submenu_page("owt-menus", "Playlists", "Playlists", "manage_options", "owt-menus", array($this,'playlists'));
+		add_submenu_page("owt-menus", "Add playlist", "Add playlist", "manage_options", "owt-submenu2", array($this,'addplaylist'));
+	}
+
+	function playlists() {
+		include_once OWT_BOILER_PLUGIN_DIR.'/admin/partials/owt-menu-playlist.php';
+	}
+
+	function addplaylist() {
+		include_once OWT_BOILER_PLUGIN_DIR.'/admin/partials/owt-menu-add-playlist.php';
+	}
+
 }

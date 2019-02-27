@@ -157,6 +157,9 @@ class Owt_boiler {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		//call admin menus and submenus section
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'owt_menus_sections' );
+
 	}
 
 	/**

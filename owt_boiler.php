@@ -30,30 +30,19 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+if ( ! defined( 'OWT_BOILER_PLUGIN_DIR' ) ) {
+	define( 'OWT_BOILER_PLUGIN_DIR', plugin_dir_path(__FILE__) );
+}
+if ( ! defined( 'OWT_BOILER_PLUGIN_URL' ) ) {
+	define( 'OWT_BOILER_PLUGIN_URL', plugins_url()."/owt-boiler" );
+}
+
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'PLUGIN_NAME_VERSION', '1.0.0' );
-
-
-//Show the plugin menu when activating
-	function owt_menus_sections() {
-		global $wpdb;
-		add_menu_page("OWT Menus", "OWT Menus", "manage_options", "owt-menus", 'callbackfunction1', 'dashicons-editor-help',7);
-		add_submenu_page("owt-menus", "First Submenus", "First Submenus", "manage_options", "owt-menus", 'callbackfunction1');
-		add_submenu_page("owt-menus", "Second Submenus", "Second Submenus", "manage_options", "owt-submenu2", 'callbackfunction2');
-	}
-	add_action("admin_menu", "owt_menus_sections");
-
-	function callbackfunction1() {
-		echo("hello");
-	}
-
-	function callbackfunction2() {
-		echo("hello2");
-	}
 
 /**
  * The code that runs during plugin activation.

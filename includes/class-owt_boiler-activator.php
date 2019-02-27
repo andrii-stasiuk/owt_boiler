@@ -47,13 +47,6 @@ $sqlQuery = <<<EOT
 		    ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 EOT;
 		dbDelta($sqlQuery);
-
-		$this->owt_menus_sections();
-	}
-
-	public function owt_menus_sections() {
-		global $wpdb;
-		add_menu_page("OWT Menus", "OWT Menus", "manage_options", "owt-menus", '', 'dashicons-editor-help',7);
 	}
 
 }
