@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Fired during plugin deactivation
+ * tables
  *
  * @link       https://www.youtube.com
  * @since      1.0.0
@@ -20,11 +20,8 @@
  * @subpackage Owt_boiler/includes
  * @author     Andrii Stasiuk <olucky48@gmail.com>
  */
-class Owt_boiler_Deactivator {
-	private $table;
-	public function __construct($table_object) {
-		$this->table = $table_object;
-	}
+class Owt_boiler_Tables {
+
 	/**
 	 * Short Description. (use period)
 	 *
@@ -32,9 +29,10 @@ class Owt_boiler_Deactivator {
 	 *
 	 * @since    1.0.0
 	 */
-	public function deactivate() {
+
+	public function owtboilertable() {
 		global $wpdb;
-		$wpdb->query("drop table if exists ".$this->table->owtboilertable());
+		return $wpdb->prefix."owt_boiler_table";
 	}
 
 }

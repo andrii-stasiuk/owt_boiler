@@ -21,7 +21,10 @@
  * @author     Andrii Stasiuk <olucky48@gmail.com>
  */
 class Owt_boiler_Activator {
-
+	private $table;
+	public function __construct($table_object) {
+		$this->table = $table_object;
+	}
 	/**
 	 * Short Description. (use period)
 	 *
@@ -35,7 +38,7 @@ class Owt_boiler_Activator {
 		$wpdb->show_errors();
 
 $sqlQuery = <<<EOT
-		CREATE TABLE `{$this->owtboilertable()}` (
+		CREATE TABLE `{$this->table->owtboilertable()}` (
 			`id` int(11) NOT NULL AUTO_INCREMENT,
 			`name` varchar(255) DEFAULT NULL,
 			`email` varchar(255) DEFAULT NULL,
@@ -44,11 +47,13 @@ $sqlQuery = <<<EOT
 		    ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 EOT;
 		dbDelta($sqlQuery);
+
+		$this->owt_menus_sections();
 	}
 
-	public function owtboilertable() {
+	public function owt_menus_sections() {
 		global $wpdb;
-		return $wpdb->prefix."owt_boiler_table";
+		add_menu_page("OWT Menus", "OWT Menus", "manage_options", "owt-menus", '', 'dashicons-editor-help',7);
 	}
 
 }

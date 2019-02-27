@@ -37,13 +37,26 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 
+
+//Show the plugin menu when activating
+	function owt_menus_sections() {
+		global $wpdb;
+		add_menu_page("OWT Menus", "OWT Menus", "manage_options", "owt-menus", 'callbackfunction1', 'dashicons-editor-help',7);
+		add_submenu_page("owt-menus", "First Submenus", "First Submenus", "manage_options", "owt-menus", 'callbackfunction1');
+		add_submenu_page("owt-menus", "Second Submenus", "Second Submenus", "manage_options", "owt-submenu2", 'callbackfunction2');
+	}
+	add_action("admin_menu", "owt_menus_sections");
+
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-owt_boiler-activator.php
  */
 function activate_owt_boiler() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-owt_boiler-tables.php';
+	$tables = new Owt_boiler_Tables();
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-owt_boiler-activator.php';
-	$owtActivate = new Owt_boiler_Activator();
+	$owtActivate = new Owt_boiler_Activator($tables);
 	$owtActivate->activate();
 }
 
@@ -52,8 +65,10 @@ function activate_owt_boiler() {
  * This action is documented in includes/class-owt_boiler-deactivator.php
  */
 function deactivate_owt_boiler() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-owt_boiler-tables.php';
+	$tables = new Owt_boiler_Tables();
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-owt_boiler-deactivator.php';
-	$owtDeActivate = new Owt_boiler_Deactivator();
+	$owtDeActivate = new Owt_boiler_Deactivator($tables);
 	$owtDeActivate->deactivate();
 }
 
